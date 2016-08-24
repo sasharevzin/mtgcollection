@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'mikecheck-dnorthrup.c9users.io'
+  default from: 'secret-refuge-33643.herokuapp.com'
   layout 'mailer'
 end
