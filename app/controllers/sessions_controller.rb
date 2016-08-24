@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
           user.send_activation_email
           message += "Check your email for NEW activation link."
         else
-          message += "Check your email for the activation link."
+          d = user.activation_sent_at.in_time_zone("Eastern Time (US & Canada)") + 24.hours
+          message += "Check your email for the activation link. You'll be able to get a new one after #{d.strftime('%a, %d %b %Y %H:%M:%S')} EST."
         end
         flash[:warning] = message
         redirect_to root_url
