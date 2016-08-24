@@ -10,11 +10,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get '/resend_activation/:email', to: 'static_pages#home'
-  post   '/resend_activation/:email'  =>  'account_activations#resend_activation',
-                                        :constraints => { :email => /[^\/]+/ }
   resources :users
   resources :account_activations, only: [:edit]
-  
+    
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

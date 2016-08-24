@@ -4,6 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @oldinactive = users(:oldinactive)
   end
 
   test "login with invalid information" do
@@ -47,4 +48,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@user, remember_me: '0')
     assert_nil cookies['remember_token']
   end
+  
+
 end

@@ -9,11 +9,16 @@ class SessionsController < ApplicationController
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user
-      else
-        message  = "Account not activated. "
-        message += "Check your email for the activation." 
-        message += " #{view_context.link_to "Resend Activation E-Mail", { action: "resend_activation",
-        controller: "account_activations", email: user.email }, method: :post}"
+      elsif !user.activated?
+        message = "Account not activated. "
+        # re-send activation email
+        if 24.hours.ago > user.activation_sent_at
+          user.update_activation_digest
+          user.send_activation_email
+          message += "Check your email for NEW activation link."
+        else
+          message += "Check your email for the activation link."
+        end
         flash[:warning] = message
         redirect_to root_url
       end
@@ -22,6 +27,7 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+ 
 
   def destroy
     log_out if logged_in?

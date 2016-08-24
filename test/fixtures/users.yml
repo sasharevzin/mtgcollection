@@ -36,15 +36,10 @@ user_<%= n %>:
   activated_at: <%= Time.zone.now %>
 <% end %>
 
-archer:
-  name: Sterling Archer
-  email: duchess@example.gov
-  password_digest: <%= User.digest('password') %>
-  activated: true
-  activated_at: <%= Time.zone.now %>
-
-lana:
-  name: Lana Kane
-  email: hands@example.gov
-  password_digest: <%= User.digest('password') %>
-  activated: false
+oldinactive:
+ name: Old Inactive User
+ email: oldinactive@example.gov
+ password_digest: <%= User.digest('password') %>
+ activated: false
+ activation_sent_at: <%= 26.hours.ago %>
+ created_at: <%= 26.hours.ago %>
