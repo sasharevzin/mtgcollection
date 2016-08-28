@@ -3,21 +3,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      if user.activated?
-        log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_back_or user
-      elsif !user.activated?
+    @user = User.find_by(email: params[:session][:email].downcase)
+    if @user && @user.authenticate(params[:session][:password])
+      if @user.activated?
+        log_in @user
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        redirect_back_or @user
+      elsif !@user.activated?
         message = "Account not activated. "
         # re-send activation email
-        if 24.hours.ago > user.activation_sent_at
-          user.update_activation_digest
-          user.send_activation_email
+        if 24.hours.ago > @user.activation_sent_at
+          @user.update_activation_digest
+          @user.send_activation_email
           message += "Check your email for NEW activation link."
         else
-          d = user.activation_sent_at.in_time_zone("Eastern Time (US & Canada)") + 24.hours
+          d = @user.activation_sent_at.in_time_zone("Eastern Time (US & Canada)") + 24.hours
           message += "Check your email for the activation link. You'll be able to get a new one after #{d.strftime('%a, %d %b %Y %H:%M:%S')} EST."
         end
         flash[:warning] = message
