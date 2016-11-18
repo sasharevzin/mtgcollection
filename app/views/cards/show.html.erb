@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= @card.name %><br>
+<%= @card.manaCost %><br>
+<%= @card.colors %><br>
+<%= @card.rarity %><br>
+<%= @card.setName %> - <%= @card.set %> <br>
+<%= @card.text %><br>
+<i>"<%= @card.flavor %>"</i><br>
+<% if @card.power.nil? %>
+        <span></span>
+    <% else %>
+    P/T: <%= @card.power %>/<%= @card.toughness %><br>
+<% end %>
+<%= image_tag(@card.image_url) %>

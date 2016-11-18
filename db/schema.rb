@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828020431) do
+ActiveRecord::Schema.define(version: 20161118005054) do
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "multiverse_id"
+    t.string   "manaCost"
+    t.string   "colors"
+    t.string   "colorIdentity"
+    t.integer  "cmc"
+    t.string   "cardtype"
+    t.string   "cardtypes"
+    t.string   "cardsubtypes"
+    t.string   "rarity"
+    t.string   "set"
+    t.string   "setName"
+    t.text     "text"
+    t.string   "flavor"
+    t.string   "artist"
+    t.string   "number"
+    t.string   "power"
+    t.string   "toughness"
+    t.string   "layout"
+    t.text     "image_url",     default: "www.google.com"
+    t.string   "watermark"
+    t.string   "rulings"
+    t.string   "printings"
+    t.text     "original_text"
+    t.string   "original_type"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
