@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'collections/new'
+
   resources :cards
   get 'password_resets/new'
 
