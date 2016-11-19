@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :collections
-  resources :cards
+  resources :cards do
+    get :autocomplete_card_name, :on => :collection
+  end
+  
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -15,7 +18,7 @@ Rails.application.routes.draw do
   post '/signup',    to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  get 'search',      to: 'cards#search'
+  get 'search',      to: 'cards#autocomplete_card_name'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]

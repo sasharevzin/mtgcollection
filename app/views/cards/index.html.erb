@@ -10,20 +10,12 @@
   </thead>
 
   <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        
-        <td><%= card.name %><%= link_to 'Show', card %></td>
-        <td><%= image_tag(card.image_url) %></td>
-      
-      
-      </tr>
-    <% end %>
+    
   </tbody>
 </table>
     <%= form_tag("/search", method: "get") do %>
       <%= label_tag(:name, "Search for:") %>
-      <%= text_field_tag(:name) %>
+      <%= text_field_tag(:card_name) %>
       <%= submit_tag("Search") %>
     <% end %>
     </tbody>

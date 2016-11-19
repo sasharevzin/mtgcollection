@@ -11,6 +11,11 @@ gem 'coffee-rails', '4.2.1'
 gem 'jquery-rails', '4.1.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
+gem 'rails-jquery-autocomplete'
+gem 'mtg_sdk'
+gem 'simple_form'
+gem 'bootstrap3_autocomplete_input'
+
 
 group :assets, :test, :development do
     gem 'bootstrap-sass', '3.3.6'
@@ -21,8 +26,7 @@ end
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
-  gem 'mtg_sdk'
-  gem 'rails-jquery-autocomplete'
+  
 end
 
 group :development do

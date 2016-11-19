@@ -1,10 +1,12 @@
 class CardsController < ApplicationController
+  autocomplete :card, :name, :full => true
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   # GET /cards
   # GET /cards.json
   def index
-      @cards = Card.all
+    @cards = Card.order(:name).where("name like ?", "%#{params[:card_name]}%")
+    render json: @cards.map(&:name)
   end
 
   # GET /cards/1
@@ -21,26 +23,8 @@ class CardsController < ApplicationController
   def edit
   end
 
-  def search
-   @card = Card.find_by_name(params[:name])
-   render action: 'show'
-  end
-
   # POST /cards
   # POST /cards.json
-  def create
-    @card = Card.new(card_params)
-
-    respond_to do |format|
-      if @card.save
-        format.html { redirect_to @card, notice: 'Card was successfully created.' }
-        format.json { render :show, status: :created, location: @card }
-      else
-        format.html { render :new }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
 
 
