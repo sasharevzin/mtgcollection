@@ -1,4 +1,7 @@
-<%= form_for(@card, :method => 'get') do |f| %>
-<%= f.text_field :card_name, data: { autocomplete_source: cards_path} %>
-<%= submit_tag "Submit" %>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:name, "Search for:") %>
+  <%= text_field_tag :name, :as => :autocomplete, :source_query => autocomplete_card_name_cards_path  %>
+  
+  <!-- <#%= text_field_tag :card_name, :as => :autocomplete, :source_query => autocomplete_card_name_cards_path %> -->
+  <%= submit_tag("Search") %>
 <% end %>

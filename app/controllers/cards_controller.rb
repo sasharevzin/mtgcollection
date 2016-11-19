@@ -5,8 +5,9 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.order(:name).where("name like ?", "%#{params[:card_name]}%")
-    render json: @cards.map(&:name)
+    @cards = Card.order(:name).where("name like '%#{params[:name]}%'").limit(1000)
+    render html: @cards.map(&:name)
+    #json: @cards.map(&:name)
   end
 
   # GET /cards/1

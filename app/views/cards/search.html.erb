@@ -1,6 +1,2 @@
 
 
-<%= form_tag(cards_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:name], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: autocomplete_card_name_cards_path} %>  
-<%= submit_tag "Search" %>
-<%end%>
