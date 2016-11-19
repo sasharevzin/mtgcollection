@@ -4,12 +4,42 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+      @cards = Card.all
   end
 
   # GET /cards/1
   # GET /cards/1.json
   def show
+  end
+
+  # GET /cards/new
+  def new
+    @card = Card.new
+  end
+
+  # GET /cards/1/edit
+  def edit
+  end
+
+  def search
+   @card = Card.find_by_name(params[:name])
+   render action: 'show'
+  end
+
+  # POST /cards
+  # POST /cards.json
+  def create
+    @card = Card.new(card_params)
+
+    respond_to do |format|
+      if @card.save
+        format.html { redirect_to @card, notice: 'Card was successfully created.' }
+        format.json { render :show, status: :created, location: @card }
+      else
+        format.html { render :new }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 

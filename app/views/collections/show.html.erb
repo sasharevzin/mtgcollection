@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<% @collection.cards.each do |card| %>
+<%= image_tag(card.image_url) %>
+<% end %>
+<%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back', collections_path %>

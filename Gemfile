@@ -22,6 +22,7 @@ group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'mtg_sdk'
+  gem 'rails-jquery-autocomplete'
 end
 
 group :development do

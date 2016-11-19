@@ -1,7 +1,7 @@
 namespace :cards do 
     desc "Create cards"
     task :create_cards => :environment do
-        cards = MTG::Card.where(set: 'ktk').all
+        cards = MTG::Card.all
         cards.each do |card|
             card.image_url.blank? ? image_url = "mtgCardBack.jpg" : image_url = card.image_url
             Card.create(name: card.name,multiverse_id: card.multiverse_id, manaCost: card.mana_cost, colors: card.colors, 
