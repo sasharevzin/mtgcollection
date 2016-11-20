@@ -5,8 +5,12 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
+    if params[:name]
     @cards = Card.order(:name).where("name like '%#{params[:name]}%'").limit(1000)
     render html: @cards.map(&:name)
+    else
+      @cards = Card.first
+    end
     #json: @cards.map(&:name)
   end
 
