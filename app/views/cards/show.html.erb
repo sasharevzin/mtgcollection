@@ -1,23 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= @card.name %><br>
-<div id="topSeperator"></div>
-<div id="right-container">
-
-<div id="left-container">
-  <%= image_tag(@card.image_url) %>
+<% provide(:title, @card.name) %>
+<div id="section" class="container-fluid">
+  <div class="cardContainer">
+    <strong class='cardTitle'><%= @card.name %></strong><br>
+    <div class="cardImage">
+      <%= image_tag(@card.image_url) %>
+    </div>
+    <div class="cardStats">
+      <ul class='cardStatLabel'>
+        <li><span class='cardLabel'>Card Name</span>: <%= @card.name %></li>
+        <li><span class='cardLabel'>Mana Cost</span>: <%= @card.manaCost %></li>
+        <li><span class='cardLabel'>Colors</span>: <%= @card.colors %></li>
+        <li><span class='cardLabel'>Rarity</span>: <%= @card.rarity %></li>
+        <li><span class='cardLabel'>Set</span>: <%= @card.setName %> - <%= @card.set %></li>
+        <% if @card.text.nil? %>
+          
+        <% else %>
+          <li><span class='cardLabel'>Card Text</span>: <%= @card.text %></li>
+        <% end %>
+        <% if @card.flavor.nil? %>
+        <% else %>
+          <li><span class='cardLabel'>Flavor Text</span>: <i><%= @card.flavor %></i></li>
+        <% end %>
+        <% if @card.power.nil? %>
+        <% else %>
+            <li><span class='cardLabel'>P/T</span>: <%= @card.power %>/<%= @card.toughness %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
-<%= @card.manaCost %><br>
-<%= @card.colors %><br>
-<%= @card.rarity %><br>
-<%= @card.setName %> - <%= @card.set %> <br>
-<%= @card.text %><br>
-<i><%= @card.flavor %></i><br>
-<% if @card.power.nil? %>
-        <span></span>
-    <% else %>
-    P/T: <%= @card.power %>/<%= @card.toughness %><br>
-<% end %>
-</div>
+
 
