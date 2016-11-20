@@ -2,6 +2,12 @@
 
 
 <%= @card.name %><br>
+<div id="topSeperator"></div>
+<div id="right-container">
+
+<div id="left-container">
+  <%= image_tag(@card.image_url) %>
+</div>
 <%= @card.manaCost %><br>
 <%= @card.colors %><br>
 <%= @card.rarity %><br>
@@ -13,4 +19,5 @@
     <% else %>
     P/T: <%= @card.power %>/<%= @card.toughness %><br>
 <% end %>
-<%= image_tag(@card.image_url) %>
+</div>
+
