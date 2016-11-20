@@ -21,15 +21,29 @@
     	},
       getValue: 'name',
       list: {
+        match: { 
+          enabled: true
+        },
+        maxNumberOfElements: 6,
+        showAnimation: {
+          type: "slide",
+          time: 300
+        },
+        hideAnimation: {
+          type: "slide",
+          time: 150
+        },
         onChooseEvent: function(){
+         var multi = $("#name").getSelectedItemData().multi;
          var code = $("#name").getSelectedItemData().code;
          window.location.href = '/cards/' + code;
         }
       },
+      theme: "round",
       template: {
         type: "custom",
         method: function(value, item) {
-          return "<img src='http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + code + "&type=card/> | " + item.type + " | " + value; 
+          return "<img src='"+item.image+"' class='autoImage'/> " + value + "<br>"+ item.text; 
         }
       }
     };

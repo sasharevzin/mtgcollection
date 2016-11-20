@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post '/signup',    to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  get '/search',      to: 'cards#index'
+  get '/search',      to: 'cards#search'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]

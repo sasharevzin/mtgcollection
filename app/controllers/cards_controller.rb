@@ -12,6 +12,7 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
+    @card = Card.find(params[:id])
   end
 
   # GET /cards/new
@@ -19,8 +20,10 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
-  # GET /cards/1/edit
-  def edit
+  # GET /search
+  def search
+    @cards = Card.order(:name).limit(10)
+    @cards.where!("name like '%#{params[:name]}%'") if params[:name]
   end
 
   # POST /cards
