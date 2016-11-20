@@ -2,23 +2,38 @@
 
 <h1>Cards</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:name, "Search for:") %>
+  <%= text_field_tag :name, '', data: { provide: 'typeahead', source_query: autocomplete_card_name_cards_path }  %>
+  
+  <!-- <#%= text_field_tag :card_name, :as => :autocomplete, :source_query => autocomplete_card_name_cards_path %> -->
+  <%= submit_tag("Search") %>
+<% end %>
 
-  <tbody>
-    
-  </tbody>
-</table>
-    <%= form_tag("/search", method: "get") do %>
-      <%= label_tag(:name, "Search for:") %>
-      <%= text_field_tag(:name) %>
-      <%= submit_tag("Search") %>
-    <% end %>
-    </tbody>
-</table>
 
 <br>
+
+<script>
+  $(function(){
+    var options = {
+    	url: function(phrase){
+    	  return '/cards.json?name=' + phrase
+    	},
+      getValue: 'name',
+      list: {
+        onChooseEvent: function(){
+         var code = $("#name").getSelectedItemData().code;
+         window.location.href = '/cards/' + code;
+        }
+      },
+      template: {
+        type: "custom",
+        method: function(value, item) {
+          return "<img src='http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + code + "&type=card/> | " + item.type + " | " + value; 
+        }
+      }
+    };
+    
+    $("#name").easyAutocomplete(options);
+  })
+</script>

@@ -1,4 +1,4 @@
 json.array!(@cards) do |card|
-  json.extract! card, :id
-  json.url card_url(card, format: :json)
+  json.code card.id
+  json.name card.name
 end

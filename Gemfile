@@ -15,6 +15,7 @@ gem 'rails-jquery-autocomplete'
 gem 'mtg_sdk'
 gem 'simple_form'
 gem 'bootstrap3_autocomplete_input'
+gem 'jquery-ui-rails'
 
 
 group :assets, :test, :development do
